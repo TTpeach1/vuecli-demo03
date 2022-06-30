@@ -1,29 +1,11 @@
 <template>
   <div>
-    <p>请选择你要购买的书籍</p>
-    <ul>
-      <li v-for="(item,idd) in arr" :key="idd">
-        <span>{{item.name}}</span>
-        <button @click="addFn(idd)">买它买它</button>
-      </li>
-    </ul>
-    <table border="1" width="500" cellspacing="0">
-      <tr>
-        <th>序号</th>
-        <th>书名</th>
-        <th>单价</th>
-        <th>数量</th>
-        <th>合计</th>
-      </tr>
-      <tr v-for="(item,index) in arr" :key="index">
-        <td>{{index+1}}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.price }}</td>
-        <td>{{ item["count"] }}</td>
-        <td>{{ item["price"] * item["count"] }}</td>
-      </tr>
-    </table>
-    <p>总价格为: {{allPrice}}</p>
+    <!-- 无id时, 可以使用index(反正也是就地更新) -->
+    <div v-for="(item, index) in arr" :key="index">
+      <input type="checkbox" v-model="checkNumArr" :value="item" />
+      <span>{{item}}</span>
+    </div>
+    <p>你选中的元素, 累加的值和为:{{ theSum }} </p>
   </div>
 </template>
 
@@ -31,41 +13,19 @@
 export default {
   data() {
     return {
-      arr: [
-        {
-          name: "水浒传",
-          price: 107,
-          count: 0,
-        },
-        {
-          name: "西游记",
-          price: 192,
-          count: 0,
-        },
-        {
-          name: "三国演义",
-          price: 219,
-          count: 0,
-        },
-        {
-          name: "红楼梦",
-          price: 178,
-          count: 0,
-        },
-      ],
+      arr: [9, 15, 19, 25, 29, 31, 48, 57, 62, 79, 87],
+      checkNumArr:[], //  保存用户选中的数字
     };
   },
-  methods:{
-    addFn(iddd){
-      this.arr[iddd].count++
-    }
-  },
-  computed:{
-    allPrice(){
-      return this.arr.reduce((sum, obj) => {
-        return (sum += obj.price * obj.count);
+  computed: {
+    theSum(){
+      return this.checkNumArr.reduce((sum, val) => {
+        return (sum += val);
       }, 0);
     }
-  }
+  },
 };
 </script>
+
+<style>
+</style>
