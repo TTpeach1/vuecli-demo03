@@ -42,5 +42,9 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "main": "index.js",
+  "repository": "https://github.com/TTpeach1/vuecli-demo03.git",
+  "author": "TTpeach1 <TTpeach1@Outlook.com>",
+  "license": "MIT"
 }
